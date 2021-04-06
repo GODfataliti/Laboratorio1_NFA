@@ -9,6 +9,7 @@
  
  ```
  Seguir los siguientes pasos:
+ Instalar git
  Ir a la carpeta donde se almacenaran los archivos y abrir el cmd desde ahi o ir a la carpeta por la direccion de cmd.
  Win + R : Escribir cmd
  git clone https://github.com/GODfataliti/Laboratorio1_NFA.git
