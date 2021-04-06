@@ -18,5 +18,11 @@
  
  Ahora veran los archivos ya creados dentro del buscador de archivos (Donde ubicaron la carpeta)
  Crearan un archivo .py en donde trabajaran.
+ 
+ Para guardar los cambios y subirlos al repositorio, escribir lo siguiente:
+ git add .                              ( . es para guardar todos los archivos)
+ git commit -m "nombre del commit"      ( lo que esta entre commillas seran el nombre del commit, intenten describir los cambios en pocas palabras )
+ git push -u origin nombre_rama         ( Con push subiran los cambios al repositorio en donde todos lo veran )
+ 
  ```
 
