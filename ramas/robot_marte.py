@@ -3,7 +3,6 @@
 
 from numpy import random
 
-
 class Movimientos:
 
 	def __init__(self):
@@ -23,8 +22,6 @@ class Movimientos:
 		elif path == self.E:
 			arr+=self.E
 
-
-
 class Robot:
 
 	def __init__(self):
@@ -35,10 +32,13 @@ class Robot:
 	def avanzar(self,path):
 		return self.mov.mover(self.arr,path)
 
+	@property
 	def obtenerArr(self):
 		return "".join(self.arr)
 
-
+	@obtenerArr.setter
+	def modificarArr(self):
+		pass
 
 def main():
 
