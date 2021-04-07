@@ -40,32 +40,34 @@ class Robot:
 
 
 
+def main():
 
-prueba = Robot()
-print(prueba.obtenerArr())
+	prueba = Robot()
 
-def identificarRepetido(arr,word):
-	print("...Example...")
+	def identificarRepetido(arr,word):
+		print("...Example...")
 
-cont = 0
-while cont<=10:
+	cont = 0
+	while cont<=10:
 
-	randomN = random.randint(1,5)
-	if randomN == 1:
-		prueba.avanzar('W')
-		#identificarRepetido(prueba.obtenerArr(),'W')
-	elif randomN == 2:
-		prueba.avanzar('E')
-		#identificarRepetido(prueba.obtenerArr(),'W')
-	elif randomN == 3:
-		prueba.avanzar('S')
-		#identificarRepetido(prueba.obtenerArr(),'W')
-	elif randomN == 4:
-		prueba.avanzar('N')
-		#identificarRepetido(prueba.obtenerArr(),'W')
+		randomN = random.randint(1,5)
+		if randomN == 1:
+			prueba.avanzar('W')
+			#identificarRepetido(prueba.obtenerArr(),'W')
+		elif randomN == 2:
+			prueba.avanzar('E')
+			#identificarRepetido(prueba.obtenerArr(),'W')
+		elif randomN == 3:
+			prueba.avanzar('S')
+			#identificarRepetido(prueba.obtenerArr(),'W')
+		elif randomN == 4:
+			prueba.avanzar('N')
+			#identificarRepetido(prueba.obtenerArr(),'W')
 
-	cont+=1
+		cont+=1
 
-print(prueba.obtenerArr())
+	print(prueba.obtenerArr())
 
 
+if __name__ == '__main__':
+	main()
