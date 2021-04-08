@@ -32,11 +32,11 @@ class Robot:
 	def avanzar(self,path):
 		return self.mov.mover(self.arr,path)
 
-	@property
+	#@property
 	def obtenerArr(self):
 		return "".join(self.arr)
 
-	@obtenerArr.setter
+	#@obtenerArr.setter
 	def modificarArr(self):
 		pass
 
