@@ -26,4 +26,13 @@
  git push -u origin nombre_rama         ( Con push subiran los cambios al repositorio en donde todos lo veran )
  
  ```
+---
+## Problema 1
 
+Verificar cadenas binarias curruptas o limpias.
+
+
+---
+## Problema 2
+
+Planificacion autonoma de un robot, determinar si sos movimientos son validos.
