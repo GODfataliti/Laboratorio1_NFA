@@ -25,16 +25,16 @@ class Movimientos:
 class Robot:
 
 	def __init__(self):
-		self.arr = []
+		self.__arr = []
 		self.mov = Movimientos()
 
 
 	def avanzar(self,path):
-		return self.mov.mover(self.arr,path)
+		return self.mov.mover(self.__arr,path)
 
-	#@property
+	@property
 	def obtenerArr(self):
-		return "".join(self.arr)
+		return "".join(self.__arr)
 
 	#@obtenerArr.setter
 	def modificarArr(self):
