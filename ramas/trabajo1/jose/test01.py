@@ -25,27 +25,32 @@ def verificaCorrupto(arr):
 def recursivo(nombre,arr):
 
 	nombre_archivo = nombre
-	cadena = arr
+	cadena = list(arr)
 	if len(cadena)<1:
 		return True
+
+	f = open(nombre_archivo, 'a')
 
 	linea = cadena[0]
 	linea = linea[:-1]
 
 	if linea[-3:] == '101':
-		new_cadena = linea[:-3]
 
 		if verificaCorrupto(linea):
-			f = open(nombre_archivo, 'a')
 			text = linea + ' (C)'
 			f.write(text)
 		else:
-			f = open(nombre_archivo, 'a')
 			text = linea + ' (L)'
 			f.write(text)
 
 	else:
-		
+		text = linea + ' (L)'
+		f.write(text)
+
+	f.close()
+	cadena = cadena.pop(0)
+	recursivo(nombre_archivo,cadena)
+
 
 
 
