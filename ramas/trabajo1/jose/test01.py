@@ -13,7 +13,7 @@ def verificaCorrupto(arr):
 	contador0 = 0
 
 	cadena = arr
-
+	print("Verificando...")
 
 
 	if contador1>=4 or contador0>=3:
@@ -26,6 +26,7 @@ def recursivo(nombre,arr):
 
 	nombre_archivo = nombre
 	cadena = list(arr)
+	print(f'Lista: {cadena} \nLargo: {len(cadena)}')
 	if len(cadena)<1:
 		return True
 
@@ -33,23 +34,26 @@ def recursivo(nombre,arr):
 
 	linea = cadena[0]
 	linea = linea[:-1]
+	print(f'Linea revisada: {linea}')
 
 	if linea[-3:] == '101':
 
 		if verificaCorrupto(linea):
-			text = linea + ' (C)'
+			text = '\n' + str(linea) + ' (C)'
 			f.write(text)
 		else:
-			text = linea + ' (L)'
+			text = '\n' + str(linea) + ' (L)'
 			f.write(text)
 
 	else:
-		text = linea + ' (L)'
+		text = '\n' + str(linea) + ' (L)'
 		f.write(text)
 
 	f.close()
-	cadena = cadena.pop(0)
-	recursivo(nombre_archivo,cadena)
+	cadena.pop(0)
+	new_cadena = cadena
+	print(f'Cadena Enviada: {new_cadena}\n')
+	return recursivo(nombre_archivo,new_cadena)
 
 
 
@@ -80,8 +84,7 @@ def verificadorCadena(nombre,arr):
 def leerArchivo(doc):
 	try:
 		f = open(doc,'r')
-		lineas = f.readlines()
-		print(lineas)
+		lineas = list(f.readlines())
 		#Mandar a la 2da funcion que separe el archivo.
 		verificadorCadena(doc,lineas)
 		f.close()
