@@ -19,7 +19,7 @@ def verificaCorrupto(arr):
 	if contador1>=4 or contador0>=3:
 		return True
 	else:
-		return False 
+		return False
 
 
 def recursivo(nombre,arr):
@@ -61,10 +61,10 @@ def recursivo(nombre,arr):
 	#tomar la cadena - DONE
 	#verificar si la cadena tiene elementos - DONE
 	#verificar primera linea - DONE
-	#decidir si esta bien o no:
+	#decidir si esta bien o no: C o L
 	#escribir una nueva linea en el archivo sol con la primera linea de la cadena.
-	#eliminarla de la lista (la primera linea)
-	#volver a llamar la funcion con la nueva cadena
+	#eliminarla de la lista (la primera linea) - DONE
+	#volver a llamar la funcion con la nueva cadena - DONE
 	pass
 
 
