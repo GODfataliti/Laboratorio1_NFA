@@ -1,4 +1,4 @@
-#PRIMERA PRUEBA
+#PRIMERA PRUEBA - PROBLEMA 1
 
 from dotenv import load_dotenv
 import os
@@ -22,10 +22,10 @@ def verificaCorrupto(arr):
 	largo0 = '000' #Minimo 3 -> C
 
 	if largo1 in cadena or largo0 in cadena:
-		printLog('Corrupto')
+		printLog('Corrupto\n')
 		return True
 	else:
-		printLog('Limpio')
+		printLog('Limpio\n')
 		return False
 
 
