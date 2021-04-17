@@ -9,8 +9,8 @@ load_dotenv()
 ARCHIVO = os.getenv('NOMBRE_ARCHIVO')
 
 def verificaCorrupto(arr):
-	contador1 = 0
-	contador0 = 0
+	contador1 = 0 #Minimo 4 -> C
+	contador0 = 0 #Minimo 3 -> C
 
 	cadena = arr
 	print("Verificando...")
