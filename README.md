@@ -34,7 +34,6 @@
 
 Verificar cadenas binarias curruptas o limpias. - DONE
 
-
 ---
 ## Problema 2
 
