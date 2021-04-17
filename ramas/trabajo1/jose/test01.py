@@ -7,18 +7,25 @@ import os
 load_dotenv()
 #GLOBAL VAR
 ARCHIVO = os.getenv('NOMBRE_ARCHIVO')
+ESTADO = eval(os.getenv('ESTADO_LOG'))
+
+def printLog(arr, estado=False):
+	estado = ESTADO
+	if estado:
+		print(f'[LOG]: {arr}')
+
 
 def verificaCorrupto(arr):
-	contador1 = 0
-	contador0 = 0
 
 	cadena = arr
-	print("Verificando...")
+	largo1 = '1111' #Minimo 4 -> C
+	largo0 = '000' #Minimo 3 -> C
 
-
-	if contador1>=4 or contador0>=3:
+	if largo1 in cadena or largo0 in cadena:
+		printLog('Corrupto')
 		return True
 	else:
+		printLog('Limpio')
 		return False
 
 
@@ -26,7 +33,8 @@ def recursivo(nombre,arr):
 
 	nombre_archivo = nombre
 	cadena = list(arr)
-	print(f'Lista: {cadena} \nLargo: {len(cadena)}')
+	printLog(f'Lista: {cadena}')
+	printLog(f'Largo: {len(cadena)}')
 	if len(cadena)<1:
 		return True
 
@@ -34,7 +42,7 @@ def recursivo(nombre,arr):
 
 	linea = cadena[0]
 	linea = linea[:-1]
-	print(f'Linea revisada: {linea}')
+	printLog(f'Linea revisada: {linea}')
 
 	if linea[-3:] == '101':
 
@@ -52,7 +60,6 @@ def recursivo(nombre,arr):
 	f.close()
 	cadena.pop(0)
 	new_cadena = cadena
-	print(f'Cadena Enviada: {new_cadena}\n')
 	return recursivo(nombre_archivo,new_cadena)
 
 
@@ -77,7 +84,7 @@ def verificadorCadena(nombre,arr):
 	cadena = arr
 
 	if recursivo(nombre_archivo,cadena):
-		print("Termine.")
+		printLog('Termine.')
 
 
 
@@ -89,7 +96,7 @@ def leerArchivo(doc):
 		verificadorCadena(doc,lineas)
 		f.close()
 	except Exception as e:
-		print(f'[!] ERROR: {e} [!]\n')
+		printLog(f'[!] ERROR: {e} [!]\n')
 
 
 def main():

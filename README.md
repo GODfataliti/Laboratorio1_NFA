@@ -19,6 +19,9 @@
  
  Ahora veran los archivos ya creados dentro del buscador de archivos (Donde ubicaron la carpeta)
  Crearan un archivo .py en donde trabajaran.
+
+ git config -- global user.email "email" Para configurar email del usuario
+ git config -- global user.name "nombre" Para configurar nombre del usuario
  
  Para guardar los cambios y subirlos al repositorio, escribir lo siguiente:
  git add .                              ( . es para guardar todos los archivos)
@@ -29,10 +32,10 @@
 ---
 ## Problema 1
 
-Verificar cadenas binarias curruptas o limpias.
+Verificar cadenas binarias curruptas o limpias. - DONE
 
 
 ---
 ## Problema 2
 
-Planificacion autonoma de un robot, determinar si sos movimientos son validos.
+Planificacion autonoma de un robot, determinar si sos movimientos son validos. - IN PROCESS
