@@ -14,11 +14,14 @@ def printLog(arr, estado=False):
 		print(f'[LOG]: {arr}')
 
 
+
 class Binario:
 
 	def __init__(self):
+		self.archivo = ARCHIVO
 		pass
-	def verificaCorrupto(arr):
+
+	def verificaCorrupto(self,arr):
 
 		cadena = arr
 		largo1 = '1111' #Minimo 4 -> C
@@ -32,7 +35,7 @@ class Binario:
 			return False
 
 
-	def recursivo(nombre,arr):
+	def recursivo(self,nombre,arr):
 
 		nombre_archivo = nombre
 		cadena = list(arr)
@@ -67,7 +70,6 @@ class Binario:
 
 
 
-
 		#tomar la cadena - DONE
 		#verificar si la cadena tiene elementos - DONE
 		#verificar primera linea - DONE
@@ -80,7 +82,7 @@ class Binario:
 
 
 
-	def verificadorCadena(nombre,arr):
+	def verificadorCadena(self,nombre,arr):
 
 		nombre_archivo = nombre
 		nombre_archivo = nombre_archivo[:-4] + 'Respuesta.txt'
@@ -90,8 +92,7 @@ class Binario:
 			printLog('Termine.')
 
 
-
-	def leerArchivo(doc):
+	def leerArchivo(self,doc):
 		try:
 			f = open(doc,'r')
 			lineas = list(f.readlines())
@@ -101,13 +102,16 @@ class Binario:
 		except Exception as e:
 			printLog(f'[!] ERROR: {e} [!]\n')
 
+
+
 	def Iniciar(self,doc):
 		self.leerArchivo(doc)
 
 
+
 def main():
 	binario = Binario()
-	binario.inicar(ARCHIVO)
+	binario.Iniciar(ARCHIVO)
 
 
 
