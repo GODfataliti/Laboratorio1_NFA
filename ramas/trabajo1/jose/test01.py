@@ -2,23 +2,32 @@
 
 from dotenv import load_dotenv
 import os
+import time
 
 load_dotenv()
 #GLOBAL VAR
 ARCHIVO = os.getenv('NOMBRE_ARCHIVO')
 ESTADO = eval(os.getenv('ESTADO_LOG'))
+PRINT_ESTADO = eval(os.getenv('PRINT_ESTADO'))
 
-def printLog(arr, estado=False):
-	estado = ESTADO
-	if estado:
-		print(f'[LOG]: {arr}')
-
-
+def printLog(arr, error=False):
+	estado_print = PRINT_ESTADO
+	error = error
+	green='\033[92m'
+	warning='\033[93m'
+	endc='\033[0m'
+	if estado_print:
+		print(f"{green}[LOG {time.strftime('%b %Y %H:%M:%S')}] {endc}: {arr}")
+	elif error:
+		print(f"{warning}[LOG {time.strftime('%b %Y %H:%M:%S')}] {endc}: {arr}")
+	else:
+		print(f"{green}[LOG {time.strftime('%b %Y %H:%M:%S')}] {endc}: {arr}")
 
 class Binario:
 
 	def __init__(self):
 		self.archivo = ARCHIVO
+		self.archivo_estado = True
 		pass
 
 	def verificaCorrupto(self,arr):
@@ -28,19 +37,21 @@ class Binario:
 		largo0 = '000' #Minimo 3 -> C
 
 		if largo1 in cadena or largo0 in cadena:
-			printLog('Corrupto\n')
+			if PRINT_ESTADO:
+					printLog('Corrupto\n')
 			return True
 		else:
-			printLog('Limpio\n')
+			if PRINT_ESTADO:
+					printLog('Limpio\n')
 			return False
-
 
 	def recursivo(self,nombre,arr):
 
 		nombre_archivo = nombre
 		cadena = list(arr)
-		printLog(f'Lista: {cadena}')
-		printLog(f'Largo: {len(cadena)}')
+		if ESTADO:
+			printLog(f'Lista: {cadena}')
+			printLog(f'Largo: {len(cadena)}')
 		if len(cadena)<1:
 			return True
 
@@ -48,7 +59,8 @@ class Binario:
 
 		linea = cadena[0]
 		linea = linea[:-1]
-		printLog(f'Linea revisada: {linea}')
+		if ESTADO:
+			printLog(f'Linea revisada: {linea}\n')
 
 		if linea[-3:] == '101':
 
@@ -61,14 +73,14 @@ class Binario:
 
 		else:
 			text = '\n' + str(linea) + ' (L)'
+			if PRINT_ESTADO:
+					printLog('Limpio\n',)
 			f.write(text)
 
 		f.close()
 		cadena.pop(0)
 		new_cadena = cadena
 		return self.recursivo(nombre_archivo,new_cadena)
-
-
 
 		#tomar la cadena - DONE
 		#verificar si la cadena tiene elementos - DONE
@@ -80,8 +92,6 @@ class Binario:
 		pass
 
 
-
-
 	def verificadorCadena(self,nombre,arr):
 
 		nombre_archivo = nombre
@@ -89,29 +99,36 @@ class Binario:
 		cadena = arr
 
 		if self.recursivo(nombre_archivo,cadena):
-			printLog('Termine.')
-
+			printLog('\x1b[6;30;42m' + 'Termine.' + '\x1b[0m')
 
 	def leerArchivo(self,doc):
 		try:
 			f = open(doc,'r')
 			lineas = list(f.readlines())
+			if ESTADO:
+				printLog(f'{lineas}\n')
 			#Mandar a la 2da funcion que separe el archivo.
 			self.verificadorCadena(doc,lineas)
 			f.close()
 		except Exception as e:
-			printLog(f'[!] ERROR: {e} [!]\n')
+			printLog(f'[!] ERROR AL LEER: {e} [!]\n', True)
 
 
-
-	def Iniciar(self,doc):
-		self.leerArchivo(doc)
-
+	def Iniciar(self,doc=ARCHIVO):
+		while self.archivo_estado:
+			printLog('Ingrese el nombre del archivo:')
+			documento = input()
+			printLog(f'Archivo ingresado: {documento}')
+			printLog(f'Realizar codificacion: S/N')
+			opc = input()
+			if opc.upper()=='S':
+				self.leerArchivo(documento)
+				self.archivo_estado=False
 
 
 def main():
 	binario = Binario()
-	binario.Iniciar(ARCHIVO)
+	binario.Iniciar()
 
 
 
