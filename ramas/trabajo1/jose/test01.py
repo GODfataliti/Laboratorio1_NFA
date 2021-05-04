@@ -24,11 +24,11 @@ class printsLog:
 		error = error
 
 		if estado_print:
-			print(self.__green + f"[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}" + self.__endc)
+			print(f"{self.__green}[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}{self.__endc}")
 		elif error:
-			print(self.__warning+  f"[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}"+ self.__endc)
+			print(f"{self.__warning}[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}{self.__warning}{self.__endc}")
 		else:
-			print(self.__green+ f"[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}"+ self.__endc)
+			print(f"{self.__green}[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}{self.__endc}")
 
 class Binario:
 
