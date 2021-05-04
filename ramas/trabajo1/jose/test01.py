@@ -10,24 +10,32 @@ ARCHIVO = os.getenv('NOMBRE_ARCHIVO')
 ESTADO = eval(os.getenv('ESTADO_LOG'))
 PRINT_ESTADO = eval(os.getenv('PRINT_ESTADO'))
 
-def printLog(arr, error=False):
-	estado_print = PRINT_ESTADO
-	error = error
-	green='\033[92m'
-	warning='\033[93m'
-	endc='\033[0m'
-	if estado_print:
-		print(f"{green}[LOG {time.strftime('%b %Y %H:%M:%S')}] {endc}: {arr}")
-	elif error:
-		print(f"{warning}[LOG {time.strftime('%b %Y %H:%M:%S')}] {endc}: {arr}")
-	else:
-		print(f"{green}[LOG {time.strftime('%b %Y %H:%M:%S')}] {endc}: {arr}")
+
+class printsLog:
+
+	def __init__(self):
+		self.estado_print = PRINT_ESTADO
+		self.__green = '\033[92m'
+		self.__warning = '\033[91m'
+		self.__endc = '\033[0m'
+
+	def printLog(self,arr, error=False):
+		estado_print = PRINT_ESTADO
+		error = error
+
+		if estado_print:
+			print(self.__green + f"[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}" + self.__endc)
+		elif error:
+			print(self.__warning+  f"[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}"+ self.__endc)
+		else:
+			print(self.__green+ f"[LOG {time.strftime('%b %d %Y %H:%M:%S')}]: {arr}"+ self.__endc)
 
 class Binario:
 
 	def __init__(self):
 		self.archivo = ARCHIVO
 		self.archivo_estado = True
+		self.__log = printsLog()
 		pass
 
 	def verificaCorrupto(self,arr):
@@ -38,11 +46,11 @@ class Binario:
 
 		if largo1 in cadena or largo0 in cadena:
 			if PRINT_ESTADO:
-					printLog('Corrupto\n')
+				self.__log.printLog('Corrupto\n')
 			return True
 		else:
 			if PRINT_ESTADO:
-					printLog('Limpio\n')
+				self.__log.printLog('Limpio\n')
 			return False
 
 	def recursivo(self,nombre,arr):
@@ -50,8 +58,8 @@ class Binario:
 		nombre_archivo = nombre
 		cadena = list(arr)
 		if ESTADO:
-			printLog(f'Lista: {cadena}')
-			printLog(f'Largo: {len(cadena)}')
+			self.__log.printLog(f'Lista: {cadena}')
+			self.__log.printLog(f'Largo: {len(cadena)}')
 		if len(cadena)<1:
 			return True
 
@@ -60,7 +68,7 @@ class Binario:
 		linea = cadena[0]
 		linea = linea[:-1]
 		if ESTADO:
-			printLog(f'Linea revisada: {linea}\n')
+			self.__log.printLog(f'Linea revisada: {linea}\n')
 
 		if linea[-3:] == '101':
 
@@ -74,7 +82,7 @@ class Binario:
 		else:
 			text = '\n' + str(linea) + ' (L)'
 			if PRINT_ESTADO:
-					printLog('Limpio\n',)
+				self.__log.printLog('Limpio\n',)
 			f.write(text)
 
 		f.close()
@@ -99,7 +107,7 @@ class Binario:
 		cadena = arr
 
 		if self.recursivo(nombre_archivo,cadena):
-			printLog('\x1b[6;30;42m' + 'Termine.' + '\x1b[0m')
+			self.__log.printLog('Termine.')
 
 	def leerArchivo(self,doc):
 		try:
@@ -111,15 +119,15 @@ class Binario:
 			self.verificadorCadena(doc,lineas)
 			f.close()
 		except Exception as e:
-			printLog(f'[!] ERROR AL LEER: {e} [!]\n', True)
+			self.__log.printLog(f'[!] ERROR AL LEER: {e} [!]\n', True)
 
 
 	def Iniciar(self,doc=ARCHIVO):
 		while self.archivo_estado:
-			printLog('Ingrese el nombre del archivo:')
+			self.__log.printLog('Ingrese el nombre del archivo:')
 			documento = input()
-			printLog(f'Archivo ingresado: {documento}')
-			printLog(f'Realizar codificacion: S/N')
+			self.__log.printLog(f'Archivo ingresado: {documento}')
+			self.__log.printLog(f'Realizar codificacion: S/N')
 			opc = input()
 			if opc.upper()=='S':
 				self.leerArchivo(documento)
