@@ -186,7 +186,6 @@ def verificador_recursivo(doc,arr):
 	return verificador_recursivo(nombre,new_cadena)
 
 
-
 def main():
 	try:
 		while True:
@@ -203,7 +202,7 @@ def main():
 					new_archivo = archivo
 					new_archivo = new_archivo[:-4] + 'Respuesta.txt'
 					verificador_recursivo(new_archivo,documento)
-					print("\n[!] Termine. [!]")
+					print("\n[!] Archivo creado exitosamente. [!]")
 					break
 			else:
 				continue
