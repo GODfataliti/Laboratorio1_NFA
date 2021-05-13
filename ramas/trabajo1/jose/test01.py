@@ -114,7 +114,7 @@ class Binario:
 			f = open(doc,'r')
 			lineas = list(f.readlines())
 			if ESTADO:
-				printLog(f'{lineas}\n')
+				self.__log.printLog(f'{lineas}\n')
 			#Mandar a la 2da funcion que separe el archivo.
 			self.verificadorCadena(doc,lineas)
 			f.close()
