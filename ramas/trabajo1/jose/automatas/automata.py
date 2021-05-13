@@ -186,24 +186,29 @@ def verificador_recursivo(doc,arr):
 	return verificador_recursivo(nombre,new_cadena)
 
 
-
 def main():
-	
-	while True:
-		print('Ingrese el nombre del archivo: ', end="")
-		archivo = input()
+	try:
+		while True:
+			print('Ingrese el nombre del archivo: ', end="")
+			archivo = input()
 
-		print(f'Archivo ingresado: {archivo}, el nombre esta correcto?: s/n : ', end="")
-		opc = input()
-		if opc.upper()=='S':
-			documento = leerArchivo(archivo)
-			new_archivo = archivo
-			new_archivo = new_archivo[:-4] + 'Respuesta.txt'
-			verificador_recursivo(new_archivo,documento)
-			print("\n[!] Termine. [!]")
-			break
-		else:
-			continue
+			print(f'Archivo ingresado: {archivo}, el nombre esta correcto?: s/n : ', end="")
+			opc = input()
+			if opc.upper()=='S':
+				documento = leerArchivo(archivo)
+				if documento==None:
+					continues
+				else:
+					new_archivo = archivo
+					new_archivo = new_archivo[:-4] + 'Respuesta.txt'
+					verificador_recursivo(new_archivo,documento)
+					print("\n[!] Archivo creado exitosamente. [!]")
+					break
+			else:
+				continue
+	except Exception as e:
+		print(f'[!] ERROR: {e} [!]\n')
+
 
 
 if __name__ == '__main__':
