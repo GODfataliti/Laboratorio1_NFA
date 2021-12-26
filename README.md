@@ -37,4 +37,4 @@ Verificar cadenas binarias curruptas o limpias. - DONE
 ---
 ## Problema 2
 
-Planificacion autonoma de un robot, determinar si sos movimientos son validos. - IN PROCESS
+Planificacion autonoma de un robot, determinar si sos movimientos son validos. - DONE
